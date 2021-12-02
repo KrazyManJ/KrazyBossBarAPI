@@ -387,7 +387,7 @@ expression visibility of boss[ ]bar %object%:
 #	BOSSBAR VISIBILITY CONDITION
 #
 #	This condition can get value of visibility of bossbar.
-#	I know i made expression that can get this alos, but in bossbar interface, there is
+#	I know i made expression that can get this also, but in bossbar interface, there is
 #	this method to so i put it here to have it complete! :)
 #	Only requirement is bossbar as object.
 #

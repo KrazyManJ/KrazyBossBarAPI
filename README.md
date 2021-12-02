@@ -1,7 +1,5 @@
 # KrazyBossBarAPI
 
-## About
-
 This skript API (addon) can manipulate with bossbars. It can create, modify, or remove bossbars.
 
 **Those bossbars are server side, so if you need to make client side bossbars, use packets instead of this addon!** *Mby in future i will add them there!*
@@ -23,9 +21,13 @@ This skript API (addon) can manipulate with bossbars. It can create, modify, or 
 - [ ] Force-changing bossbar progress *(COMMING REALLY SOON)*
 
 
-## Syntax
+# Syntax Documentation
 
-### Utility expressions
+## Utility expressions
+
+Used to get yourself some fixed bossbar values, specifically
+flags, colors, and styles of boss bar.
+Usefull when you want to create random bossbar!
 
 ##### Colors:
 ```applescript
@@ -40,13 +42,13 @@ set {_styles::*} to all boss bar styles
 set {_flags::*} to all boss bar flags
 ```
 
-### Expressions
+## Expressions
 
-#### Creating bossbar
+### Creating bossbar
 This expression will create new bossbar and save it to variable to be accessed with all expressions down bellow.
 You have to set all parameters of boss bar except flags, because they are in most cases irrelevant.
 
-##### arguments:
+##### Arguments
 - `title` - exactly what it says, specifically shown text above bossbar (you can use colors, and also hex colors by formatting `<##afAF09>`)
 - `progress` - value of bossbar, also called damage, must be value between `0` and `1` *(in java its called `double` value)*
 - `color` - color of bossbar, you can only choose from: 
@@ -70,23 +72,26 @@ You have to set all parameters of boss bar except flags, because they are in mos
 - `players` - players, for that this bossbar will be shown
 - `hiding old one` - you can add this to the end of creating to hide old one with same key. If you don't use it, old bossbar will just stay on screen, until player disconnets.
 
-##### Example:
+#### Example
 ```applescript
 set {_bossbar} to new boss bar with key "welcome-bossbar", title "&aWelcome to our server!", progress 0.25, color "GREEN", style "SOLID", flags ("CREATE_FOG","DARKEN_SKY") for all players with hiding old one
 ```
 
-#### Getting already created bossbar
+### Getting already created bossbar
 
 This expression will find already created bossbar by its key (ID). Usefull when creating bossbar in one event and then use it in another.
 
-##### Example:
+#### Example
 ```applescript
 set {_bossbar} to bossbar with key "welcome-bossbar"
 ```
 
-#### Getting/changing/reseting title off bossbar:
+### Getting/changing/reseting bossbar title
 
-##### Example:
+This expression can change bossbar title, get it as string or clear it completely.
+**Only requirement is bossbar as object.**
+
+#### Example
 ```applescript
 set {_bossbar} to bossbar with key "welcome-bossbar"
 set {_title} to title of bossbar {_bossbar}
@@ -94,8 +99,28 @@ set title of bossbar {_bossbar} to "I hope you like this server!"
 remove title of bossbar {_bossbar} #Value = &r
 ```
 
-Editing color:
-#### Example:
+### Getting/changing progress/value/damage of bossbar
+
+This expression can change bossbar progress, or get it as number value. Allowed value is number between `0` and `1` *(in Java its called `double`)*.
+
+Only requirement is bossbar as object.
+
+#### Example
+```applescript
+set {_bossbar} to bossbar with key "welcome-bossbar"
+set {_value} to progress of bossbar {_bossbar} 
+set progress of bossbar {_bossbar} to 0.5
+```
+
+### Getting/changing bossbar color
+
+This expression can change bossbar color, or get it's string value
+Only requirement is bossbar as object.
+Allowed colors are: 
+
+`"BLUE"`,`"GREEN"`,`"PINK"`,`"PURPLE"`,`"RED"`,`"WHITE"` and `"YELLOW"`
+
+#### Example
 ```applescript
 set {_bossbar} to bossbar with key "welcome-bossbar"
 set {_color} to color of bossbar {_bossbar} 
@@ -103,8 +128,15 @@ set color of bossbar {_bossbar} to "YELLOW"
 set color of bossbar {_bossbar} to random element of all boss bar colors
 ```
 
-Editing Style:
-#### Example:
+### Getting/changing bossbar style
+
+This expression can change bossbar style, or get it's string value
+Only requirement is bossbar as object.
+Allowed styles are:
+
+`"SOLID"`,`"SEGMENTED_6"`,`"SEGMENTED_10"`,`"SEGMENTED_12"`,`"SEGMENTED_20"`
+
+#### Example
 ```applescript
 set {_bossbar} to bossbar with key "welcome-bossbar"
 set {_style} to style of bossbar {_bossbar} 
@@ -112,8 +144,15 @@ set style of bossbar {_bossbar} to "YELLOW"
 set color of bossbar {_bossbar} to random element of all boss bar styles
 ```
 
-Adding/Removing flags:
-#### Example:
+### Getting/adding/removing bossbar flags
+
+This expression can add or remove certain bossbar flags, or get them as list.
+Only requirement is bossbar as object.
+Allowed flags are: 
+
+`"CREATE_FOG"`,`"DARKEN_SKY"`,`"PLAY_BOSS_MUSIC"`
+
+#### Example
 ```applescript
 set {_bossbar} to bossbar with key "welcome-bossbar"
 set {_flags::*} to flags of bossbar {_bossbar}
@@ -121,8 +160,13 @@ add "PLAY_BOSS_MUSIC" to flags of bossbar {_bossbar}
 remove "CREATE_FOG" from flags of bossbar {_bossbar}
 ```
 
-Adding/Removing players seeing bossbar:
-#### Example:
+### Getting/adding/removing/reseting players seeing bossbar
+
+This expression can add or remove certain players, or all of them, or it can get list
+of players, who see bossbar.
+Only requirement is bossbar as object.
+
+#### Example
 ```applescript
 set {_bossbar} to bossbar with key "welcome-bossbar"
 add event-player to all players seeing bossbar {_bossbar} 
@@ -130,7 +174,14 @@ remove target player from all players seeing bossbar {_bossbar}
 reset all players seeing bossbar {_bossbar}
 ```
 
-Set visibility of bossbar:#### Example:
+### Getting/changing bossbar global visibility
+
+This expression can change bossbar visibility to all players, no matter if you add
+another player to see this bossbar. It can also get global visibility of bossbar returned in boolean
+Only requirement is bossbar as object.
+
+#### Example
+Set visibility of bossbar:
 ```applescript
 set {_bossbar} to bossbar with key "welcome-bossbar"
 set {_cansee} to visibility of bossbar {_bossbar} 
@@ -139,7 +190,15 @@ set visibility of bossbar {_bossbar} to false
 
 ## Conditions
 
-If bossbar is visible:#### Example:
+### Bossbar visibility condition
+
+This condition can get value of visibility of bossbar.
+I know i made expression that can get this also, but in bossbar interface, there is
+this method to so i put it here to have it complete! :)
+
+Only requirement is bossbar as object.
+
+#### Example
 ```applescript
 set {_bossbar} to bossbar with key "welcome-bossbar"
 if boss bar {_bossbar} is visible:
@@ -148,17 +207,20 @@ if boss bar {_bossbar} is visible:
 
 ## Effects
 
-Remove bossbar with key:
-#### Example:
+### Deleting already created bossbar
+
+This effect can delete bossbar by knowing his key (ID).
+
+**YOU CANNOT DELETE BOSSBAR BY HIS OBJECT.**
+
+#### Example
 ```applescript
 remove boss bar with key "welcome-bossbar"
 ```
 
-## Examples:
+## Code/Usage Examples
 
-#### Make bossbar to show message for certain seconds *(progress bar is showing duration)*
-
-##### Example:
+### 1. Make bossbar to show message for certain seconds *(progress bar is showing duration)*
 ```applescript
 every 30 seconds:
 	set {_bossbar} to new boss bar with key "welcome-bossbar", title "<##34a4eb>&lWelcome to our server!", progress 0, color "BLUE", style "SOLID" for all players with hiding old one
@@ -170,9 +232,8 @@ every 30 seconds:
 	remove bossbar with key "welcome-bossbar"
 ```
 
-#### Make bossbar to follow hp status of entity *(in this case i am using sheep)*
+### 2. Make bossbar to follow hp status of entity *(in this case i am using sheep)*
 
-##### Example:
 ```applescript
 on spawn of sheep:
 	set {_uuid} to random uuid # Ability to have multiple sheep
@@ -189,9 +250,7 @@ on spawn of sheep:
 	remove bossbar by key "sheep_%{_uuid}%"
 ```
 
-#### MAKE COUNTDOWN COMMAND AND SHOW TIMER THROUGH BOSSBAR
-
-##### Example:
+### 3. Make countdown command and show timer through bossbar
 ```applescript
 on load:
 	set {-bossbar} to new boss bar with key "countdown", title "<##ffff00>&lEVENT IS ENDING IN: xs", progress 1, color "YELLOW", style "SOLID" for all players with hiding old one
@@ -227,9 +286,7 @@ command /countdown <integer>:
 ```
 
 
-#### MAKE BOSSBAR TO FADE MESSAGE CHARACTER BY CHARACTER WITH PROGRESS BAR FADING AT SAME SPEED AS SHOWING MESSAGE FOR CERTAIN SECONDS, AND FADE IT BACK AWAY
-
-##### Example:
+### make bossbar to fade message character by character with progress bar fading at same speed as showing message for certain seconds, and fade it back away
 ```applescript
 command /bossbar:
 	trigger:
