@@ -62,6 +62,11 @@ import:
 #
 #	⚠ DO NOT REMOVE THOSE, BECAUSE THIS API USES THEM TO! ⚠
 #
+expression all boss bar colors:
+	return type: strings
+	get:
+		return "BLUE","GREEN","PINK","PURPLE","RED","WHITE","YELLOW"
+
 expression all boss bar flags:
 	return type: strings
 	get:
@@ -71,11 +76,6 @@ expression all boss bar styles:
 	return type: strings
 	get:
 		return "SOLID","SEGMENTED_6","SEGMENTED_10","SEGMENTED_12","SEGMENTED_20"
-
-expression all boss bar colors:
-	return type: strings
-	get:
-		return "BLUE","GREEN","PINK","PURPLE","RED","WHITE","YELLOW"
 #
 #  ________                                                              __                               
 # |        \                                                            |  \                              
@@ -146,7 +146,6 @@ expression new boss[ ]bar with key %string%[,] title %string%[,] progress %numbe
 #
 #	EXAMPLE:
 #	- set {_bossbar} to bossbar with key "welcome-bossbar"
-#	- remove bossbar with key "welcome-bossbar"
 #
 expression boss[ ]bar (with|by) key %string%:
 	return type: object
@@ -408,13 +407,6 @@ condition boss[ ]bar %object% (0¦is|1¦(is not|isn't)) visible:
 					continue
 		else:
 			Skript.warning("Variable %raw expr-1% is not instance of BossBar object!")
-condition %object% (0¦is|1¦(is not|isn't)) boss[ ]bar:
-	check:
-		if expr-1 is an instance of (class "org.bukkit.boss.BossBar"):
-			continue if mark = 0
-		else if mark = 1:
-			continue 
-
 #
 #  ________   ______    ______                        __               
 # |        \ /      \  /      \                      |  \              
@@ -430,7 +422,7 @@ condition %object% (0¦is|1¦(is not|isn't)) boss[ ]bar:
 #	DELETING ALREADY CREATED BOSSBAR
 #
 #	This effect can delete bossbar by knowing his key (ID).
-#	YOU CANNOT DELETE BOSSBAR WITH HIS OBJECT.
+#	YOU CANNOT DELETE BOSSBAR BY HIS OBJECT.
 #
 #	EXAMPLE:
 #	- remove boss bar with key "welcome-bossbar"
