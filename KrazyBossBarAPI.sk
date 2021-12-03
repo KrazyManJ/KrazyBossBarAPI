@@ -1,12 +1,16 @@
 #
-#  /$$$$$$$                               /$$$$$$$                       /$$$$$$  /$$$$$$$  /$$$$$$
-# | $$__  $$                             | $$__  $$                     /$$__  $$| $$__  $$|_  $$_/
-# | $$  \ $$  /$$$$$$   /$$$$$$$ /$$$$$$$| $$  \ $$  /$$$$$$   /$$$$$$ | $$  \ $$| $$  \ $$  | $$  
-# | $$$$$$$  /$$__  $$ /$$_____//$$_____/| $$$$$$$  |____  $$ /$$__  $$| $$$$$$$$| $$$$$$$/  | $$  
-# | $$__  $$| $$  \ $$|  $$$$$$|  $$$$$$ | $$__  $$  /$$$$$$$| $$  \__/| $$__  $$| $$____/   | $$  
-# | $$  \ $$| $$  | $$ \____  $$\____  $$| $$  \ $$ /$$__  $$| $$      | $$  | $$| $$        | $$  
-# | $$$$$$$/|  $$$$$$/ /$$$$$$$//$$$$$$$/| $$$$$$$/|  $$$$$$$| $$      | $$  | $$| $$       /$$$$$$
-# |_______/  \______/ |_______/|_______/ |_______/  \_______/|__/      |__/  |__/|__/      |______/
+#  /$$   /$$                                        /$$$$$$$                               /$$$$$$$                       /$$$$$$  /$$$$$$$  /$$$$$$
+# | $$  /$$/                                       | $$__  $$                             | $$__  $$                     /$$__  $$| $$__  $$|_  $$_/
+# | $$ /$$/   /$$$$$$  /$$$$$$  /$$$$$$$$ /$$   /$$| $$  \ $$  /$$$$$$   /$$$$$$$ /$$$$$$$| $$  \ $$  /$$$$$$   /$$$$$$ | $$  \ $$| $$  \ $$  | $$  
+# | $$$$$/   /$$__  $$|____  $$|____ /$$/| $$  | $$| $$$$$$$  /$$__  $$ /$$_____//$$_____/| $$$$$$$  |____  $$ /$$__  $$| $$$$$$$$| $$$$$$$/  | $$  
+# | $$  $$  | $$  \__/ /$$$$$$$   /$$$$/ | $$  | $$| $$__  $$| $$  \ $$|  $$$$$$|  $$$$$$ | $$__  $$  /$$$$$$$| $$  \__/| $$__  $$| $$____/   | $$  
+# | $$\  $$ | $$      /$$__  $$  /$$__/  | $$  | $$| $$  \ $$| $$  | $$ \____  $$\____  $$| $$  \ $$ /$$__  $$| $$      | $$  | $$| $$        | $$  
+# | $$ \  $$| $$     |  $$$$$$$ /$$$$$$$$|  $$$$$$$| $$$$$$$/|  $$$$$$/ /$$$$$$$//$$$$$$$/| $$$$$$$/|  $$$$$$$| $$      | $$  | $$| $$       /$$$$$$
+# |__/  \__/|__/      \_______/|________/ \____  $$|_______/  \______/ |_______/|_______/ |_______/  \_______/|__/      |__/  |__/|__/      |______/
+#                                         /$$  | $$                                                                                                 
+#                                        |  $$$$$$/                                                                                                 
+#                                         \______/                                                                                                  
+#
 #
 #
 #	AUTHOR: 									KrazyManJ
@@ -435,103 +439,3 @@ effect (remove|delete) boss[ ]bar (with|by) key %string%:
 		if {_bossbar} is set:
 			{_bossbar}.setVisible(false)
 			set {_bossbar} to Bukkit.removeBossBar(NamespacedKey.fromString({_key}, Skript.getInstance()))
-#
-#  ________                                             __                     
-# |        \                                           |  \                    
-# | $$$$$$$$ __    __  ______   ______ ____    ______  | $$  ______    _______ 
-# | $$__    |  \  /  \|      \ |      \    \  /      \ | $$ /      \  /       \
-# | $$  \    \$$\/  $$ \$$$$$$\| $$$$$$\$$$$\|  $$$$$$\| $$|  $$$$$$\|  $$$$$$$
-# | $$$$$     >$$  $$ /      $$| $$ | $$ | $$| $$  | $$| $$| $$    $$ \$$    \ 
-# | $$_____  /  $$$$\|  $$$$$$$| $$ | $$ | $$| $$__/ $$| $$| $$$$$$$$ _\$$$$$$\
-# | $$     \|  $$ \$$\\$$    $$| $$ | $$ | $$| $$    $$| $$ \$$     \|       $$
-#  \$$$$$$$$ \$$   \$$ \$$$$$$$ \$$  \$$  \$$| $$$$$$$  \$$  \$$$$$$$ \$$$$$$$ 
-#                                            | $$                              
-#                                            | $$                              
-#                                             \$$                              
-#
-# USEFUL EXAMPLES:
-#
-#	1. MAKE BOSSBAR TO SHOW SOME MESSAGE FOR CERTAIN SECONDS, PROGRESS BAR IS SHOWING DURATION
-#
-#		every 30 seconds:
-# 			set {_bossbar} to new boss bar with key "welcome-bossbar", title "<##34a4eb>&lWelcome to our server!", progress 0, color "BLUE", style "SOLID" for all players with hiding old one
-# 			set {_sec} to 5 # Amount of seconds to appear
-# 			set {_d} to 1/({_sec}*20)
-# 			loop ({_sec}*20) times:
-# 				set progress of bossbar {_bossbar} to (loop-value)*{_d}
-# 				wait 1 tick
-# 			remove bossbar with key "welcome-bossbar"
-# 	
-#	2. MAKE BOSSBAR TO WATCH HP OF SOME ENTITY (IN THIS EXAMPLE I AM USING SHEEP)
-#
-#		on spawn of sheep:
-# 			set {_uuid} to random uuid # Ability to have multiple sheep
-# 			set {_names::*} to "Merlin","Tobby","Krazy","Milo","Bobby" # Random names :3
-# 			set {_bossbar} to new boss bar with key "sheep_%{_uuid}%", title "&lMAGIC SHEEP - %random element of {_names::*} in uppercase%", progress 1, color "WHITE", style "SOLID" for all players with hiding old one
-# 			set {_max} to max health of event-entity
-# 			set {_h} to health of event-entity
-# 			while event-entity is alive:
-# 				set progress of bossbar {_bossbar} to (1/{_max})*{_h}
-# 				set {_h} to health of event-entity
-# 				wait 1 tick
-# 			set progress of bossbar {_bossbar} to 0 #If i instakill it, it will stay to 1 so i will set it to 0 there
-# 			wait 1 second #It takes 1 second to mob to disapear after death
-# 			remove bossbar by key "sheep_%{_uuid}%"
-#
-#	3. MAKE COUNTDOWN COMMAND AND SHOW TIMER THROUGH BOSSBAR
-#
-# 		on load:
-# 			set {-bossbar} to new boss bar with key "countdown", title "<##ffff00>&lEVENT IS ENDING IN: xs", progress 1, color "YELLOW", style "SOLID" for all players with hiding old one
-# 			set visibility of boss bar {-bossbar} to false
-#
-# 		command /countdown <integer>:
-# 			trigger:
-# 				set {_d} to 1/(arg-1)
-# 				set visibility of boss bar {-bossbar} to true
-# 				loop arg-1 times:
-# 					set {_time} to (arg-1)-((loop-value)-1)
-# 					if {_time} <= 3:
-# 						set color of boss bar {-bossbar} to "RED"
-# 						set title of boss bar {-bossbar} to "<##ff0000>&lEVENT IS ENDING IN: %{_time}%s"
-# 						set progress of boss bar {-bossbar} to 1-({_d}*((loop-value)-1))
-# 						wait 0.5 second
-# 						stop if "%progress of boss bar {-bossbar}%" is not "%1-({_d}*((loop-value)-1))%"
-# 						set color of boss bar {-bossbar} to "YELLOW"
-# 						set title of boss bar {-bossbar} to "<##ffff00>&lEVENT IS ENDING IN: %{_time}%s"
-# 						wait 0.5 second
-# 						stop if "%progress of boss bar {-bossbar}%" is not "%1-({_d}*((loop-value)-1))%"
-
-# 					else:
-# 						set title of boss bar {-bossbar} to "<##ffff00>&lEVENT IS ENDING IN: %{_time}%s"
-# 						set progress of boss bar {-bossbar} to 1-({_d}*((loop-value)-1))
-# 						wait 1 second
-# 						stop if "%progress of boss bar {-bossbar}%" is not "%1-({_d}*((loop-value)-1))%"
-# 				set title of boss bar {-bossbar} to "<##ffff00>&lEVENT ENDED!"
-# 				set progress of boss bar {-bossbar} to 0
-# 				wait 1 second
-# 				if progress of boss bar {-bossbar} is 0:
-# 					set visibility of boss bar {-bossbar} to false 
-#
-#	4. MAKE BOSSBAR TO FADE MESSAGE CHARACTER BY CHARACTER WITH PROGRESS BAR FADING AT SAME SPEED AS SHOWING MESSAGE FOR CERTAIN SECONDS,
-#	   AND FADE IT BACK AWAY
-#
-# 		command /bossbar:
-# 			trigger:
-# 				set {_bossbar} to new boss bar with key "show", title "&l", progress 0, color "WHITE", style "SOLID" for all players with hiding old one
-# 				set {_text} to "WELCOME HERE! ENJOY YOUR STAY!"
-# 				set {_chars::*} to split {_text} at ""
-# 				loop (length of {_text}) times:
-# 					wait 1 tick
-# 					set title of boss bar {_bossbar} to join (title of boss bar {_bossbar}),{_chars::%loop-value%}
-# 					set progress of boss bar {_bossbar} to 1/(length of {_text})*(loop-value)
-# 				wait 5 second
-# 				loop (length of {_text}) times:
-# 					wait 1 tick
-# 					set {_title} to title of boss bar {_bossbar}
-# 					set {_tchars::*} to split {_title} at ""
-# 					set {_return} to ""
-# 					loop (length of {_title})-1 times:
-# 						set {_return} to join {_return},{_tchars::%loop-value-2%}
-# 					set title of boss bar {_bossbar} to join "&l",{_return}
-# 					set progress of boss bar {_bossbar} to 1-(1/(length of {_text})*(loop-value))
-# 				remove bossbar by key "show"
