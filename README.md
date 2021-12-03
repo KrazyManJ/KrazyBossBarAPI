@@ -221,6 +221,10 @@ remove boss bar with key "welcome-bossbar"
 ## Code/Usage Examples
 
 ### 1. Make bossbar to show message for certain seconds *(progress bar is showing duration)*
+
+#### Result
+![](readmesrc/example1.gif)
+#### Code
 ```applescript
 every 30 seconds:
 	set {_bossbar} to new boss bar with key "welcome-bossbar", title "<##34a4eb>&lWelcome to our server!", progress 0, color "BLUE", style "SOLID" for all players with hiding old one
@@ -251,6 +255,10 @@ on spawn of sheep:
 ```
 
 ### 3. Make countdown command and show timer through bossbar
+
+#### Result
+![](readmesrc/example3.gif)
+#### Code
 ```applescript
 on load:
 	set {-bossbar} to new boss bar with key "countdown", title "<##ffff00>&lEVENT IS ENDING IN: xs", progress 1, color "YELLOW", style "SOLID" for all players with hiding old one
@@ -287,6 +295,10 @@ command /countdown <integer>:
 
 
 ### make bossbar to fade message character by character with progress bar fading at same speed as showing message for certain seconds, and fade it back away
+
+#### Result
+![](readmesrc/example4.gif)
+#### Code
 ```applescript
 command /bossbar:
 	trigger:
